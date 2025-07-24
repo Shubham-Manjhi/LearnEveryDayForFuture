@@ -9,68 +9,110 @@
 
 ---
 
-<h2 style="color: #1F618D; text-align: center;">✅ 1. Definition and Purpose</h2>
-<ul>
-  <li><strong>What is it?</strong> Collections is a final class in <code>java.util</code> package that contains static methods to manipulate collections.</li>
-  <li><strong>Why does it exist?</strong> It simplifies common operations such as sorting, shuffling, min/max finding, etc., without rewriting boilerplate logic.</li>
-  <li><strong>What problem does it solve?</strong> Helps avoid repetitive code and provides thread-safe and efficient manipulations of collections.</li>
-</ul>
+<h2 style="color: #1F618D; text-align: center;">✅ 2. Syntax and Structure (With Detailed Explanation)</h2>
 
----
+<h3 style="color: #117864;">1. sort(List<T> list)</h3>
+<p>Sorts the list into ascending order according to the natural ordering of its elements.</p>
+<pre><code>List<Integer> nums = Arrays.asList(4, 2, 9, 1);
+Collections.sort(nums); // [1, 2, 4, 9]</code></pre>
 
-<h2 style="color: #1F618D; text-align: center;">✅ 2. Syntax and Structure</h2>
-<p>The class is declared as:</p>
-<pre><code class="language-java">public class Collections extends Object</code></pre>
-<p>Methods include:</p>
-<ul>
-  <li><code>sort(List<T> list)</code> - Sorts list in natural order.</li>
-  <li><code>sort(List<T> list, Comparator<? super T> c)</code> - Sorts list using Comparator.</li>
-  <li><code>reverse(List<?> list)</code> - Reverses order of elements.</li>
-  <li><code>shuffle(List<?> list)</code> - Randomizes list order.</li>
-  <li><code>shuffle(List<?> list, Random rnd)</code> - Shuffles using Random generator.</li>
-  <li><code>swap(List<?> list, int i, int j)</code> - Swaps two elements.</li>
-  <li><code>fill(List<? super T> list, T obj)</code> - Replaces all elements with obj.</li>
-  <li><code>copy(List<? super T> dest, List<? extends T> src)</code> - Copies source to destination.</li>
-  <li><code>min(Collection<? extends T> coll)</code> - Returns minimum.</li>
-  <li><code>min(Collection<? extends T> coll, Comparator<? super T> comp)</code> - With comparator.</li>
-  <li><code>max(Collection<? extends T> coll)</code> - Returns maximum.</li>
-  <li><code>max(Collection<? extends T> coll, Comparator<? super T> comp)</code> - With comparator.</li>
-  <li><code>frequency(Collection<?> c, Object o)</code> - Count occurrences of object.</li>
-  <li><code>disjoint(Collection<?> c1, Collection<?> c2)</code> - Checks if no common elements.</li>
-  <li><code>binarySearch(List<? extends Comparable<? super T>> list, T key)</code> - Binary search.</li>
-  <li><code>binarySearch(List<? extends T> list, T key, Comparator<? super T> c)</code> - Binary search with comparator.</li>
-  <li><code>indexOfSubList(List<?> source, List<?> target)</code> - Finds first sublist index.</li>
-  <li><code>lastIndexOfSubList(List<?> source, List<?> target)</code> - Finds last sublist index.</li>
-  <li><code>replaceAll(List<T> list, T oldVal, T newVal)</code> - Replaces all occurrences.</li>
-  <li><code>rotate(List<?> list, int distance)</code> - Rotates elements.</li>
-  <li><code>synchronizedList(List<T> list)</code> - Thread-safe list.</li>
-  <li><code>synchronizedMap(Map<K,V> m)</code> - Thread-safe map.</li>
-  <li><code>synchronizedSet(Set<T> s)</code> - Thread-safe set.</li>
-  <li><code>unmodifiableList(List<? extends T> list)</code> - Read-only list.</li>
-  <li><code>unmodifiableMap(Map<? extends K,? extends V> m)</code> - Read-only map.</li>
-  <li><code>unmodifiableSet(Set<? extends T> s)</code> - Read-only set.</li>
-  <li><code>singleton(T o)</code> - Immutable singleton set.</li>
-  <li><code>singletonList(T o)</code> - Immutable singleton list.</li>
-  <li><code>singletonMap(K key, V value)</code> - Immutable singleton map.</li>
-  <li><code>nCopies(int n, T o)</code> - Immutable list with n copies of element.</li>
-  <li><code>emptyList()</code>, <code>emptySet()</code>, <code>emptyMap()</code> - Immutable empty collections.</li>
-</ul>
+<h3 style="color: #117864;">2. sort(List<T> list, Comparator<? super T> c)</h3>
+<p>Sorts the list using the provided comparator.</p>
+<pre><code>Collections.sort(nums, Collections.reverseOrder()); // [9, 4, 2, 1]</code></pre>
 
----
+<h3 style="color: #117864;">3. reverse(List<?> list)</h3>
+<p>Reverses the order of elements.</p>
+<pre><code>Collections.reverse(nums); // [1, 9, 2, 4] -> [4, 2, 9, 1]</code></pre>
 
-<h2 style="color: #1F618D; text-align: center;">✅ 3. Practical Examples</h2>
-<pre><code class="language-java">List<Integer> list = Arrays.asList(5, 3, 9, 1);
-Collections.sort(list);
-Collections.reverse(list);
-int min = Collections.min(list);
-int max = Collections.max(list);
-Collections.rotate(list, 2);
-Collections.fill(list, 7);
-Collections.replaceAll(list, 7, 1);
-List<String> sync = Collections.synchronizedList(new ArrayList<>());
-Map<String, String> singleton = Collections.singletonMap("key", "value");
-boolean disjoint = Collections.disjoint(list1, list2);
-</code></pre>
+<h3 style="color: #117864;">4. shuffle(List<?> list)</h3>
+<p>Randomly permutes the list using default randomness.</p>
+<pre><code>Collections.shuffle(nums); // Random order like [2, 9, 4, 1]</code></pre>
+
+<h3 style="color: #117864;">5. swap(List<?> list, int i, int j)</h3>
+<p>Swaps the elements at positions i and j.</p>
+<pre><code>Collections.swap(nums, 0, 2); // swaps first and third element</code></pre>
+
+<h3 style="color: #117864;">6. fill(List<? super T> list, T obj)</h3>
+<p>Replaces all elements with the specified object.</p>
+<pre><code>Collections.fill(nums, 0); // All elements become 0</code></pre>
+
+<h3 style="color: #117864;">7. copy(List<? super T> dest, List<? extends T> src)</h3>
+<p>Copies elements from source to destination. Dest must be at least as long.</p>
+<pre><code>List<String> dest = Arrays.asList("x", "x", "x");
+List<String> src = Arrays.asList("a", "b", "c");
+Collections.copy(dest, src); // dest becomes ["a", "b", "c"]</code></pre>
+
+<h3 style="color: #117864;">8. min(Collection<? extends T> coll)</h3>
+<p>Returns the minimum element according to natural ordering.</p>
+<pre><code>int minVal = Collections.min(nums);</code></pre>
+
+<h3 style="color: #117864;">9. max(Collection<? extends T> coll)</h3>
+<p>Returns the maximum element.</p>
+<pre><code>int maxVal = Collections.max(nums);</code></pre>
+
+<h3 style="color: #117864;">10. frequency(Collection<?> c, Object o)</h3>
+<p>Counts how many times the object appears in the collection.</p>
+<pre><code>int freq = Collections.frequency(nums, 2);</code></pre>
+
+<h3 style="color: #117864;">11. disjoint(Collection<?> c1, Collection<?> c2)</h3>
+<p>Returns true if the two collections have no elements in common.</p>
+<pre><code>boolean result = Collections.disjoint(Arrays.asList(1, 2), Arrays.asList(3, 4)); // true</code></pre>
+
+<h3 style="color: #117864;">12. binarySearch(List<? extends Comparable<? super T>> list, T key)</h3>
+<p>Performs binary search on a sorted list.</p>
+<pre><code>Collections.sort(nums);
+int index = Collections.binarySearch(nums, 2);</code></pre>
+
+<h3 style="color: #117864;">13. replaceAll(List<T> list, T oldVal, T newVal)</h3>
+<p>Replaces all old values with new value.</p>
+<pre><code>Collections.replaceAll(nums, 2, 20);</code></pre>
+
+<h3 style="color: #117864;">14. rotate(List<?> list, int distance)</h3>
+<p>Rotates the list elements the specified distance.</p>
+<pre><code>Collections.rotate(nums, 2);</code></pre>
+
+<h3 style="color: #117864;">15. synchronizedList(List<T> list)</h3>
+<p>Returns thread-safe version of list.</p>
+<pre><code>List<String> sync = Collections.synchronizedList(new ArrayList<>());</code></pre>
+
+<h3 style="color: #117864;">16. unmodifiableList(List<? extends T> list)</h3>
+<p>Returns a read-only list.</p>
+<pre><code>List<Integer> readonly = Collections.unmodifiableList(nums);</code></pre>
+
+<h3 style="color: #117864;">17. singleton(T o)</h3>
+<p>Returns immutable set with a single element.</p>
+<pre><code>Set<String> single = Collections.singleton("Java");</code></pre>
+
+<h3 style="color: #117864;">18. nCopies(int n, T o)</h3>
+<p>Returns immutable list with n copies of object.</p>
+<pre><code>List<String> copies = Collections.nCopies(3, "Hi"); // [Hi, Hi, Hi]</code></pre>
+
+<h3 style="color: #117864;">19. emptyList()</h3>
+<p>Returns immutable empty list.</p>
+<pre><code>List<String> empty = Collections.emptyList();</code></pre>
+
+<h3 style="color: #117864;">20. indexOfSubList(List<?> source, List<?> target)</h3>
+<p>Returns the starting position of first occurrence of sublist.</p>
+<pre><code>List<String> source = Arrays.asList("a", "b", "c", "d");
+List<String> target = Arrays.asList("b", "c");
+int index = Collections.indexOfSubList(source, target); // returns 1</code></pre>
+
+<h3 style="color: #117864;">21. lastIndexOfSubList(List<?> source, List<?> target)</h3>
+<p>Finds the last occurrence index of a sublist.</p>
+<pre><code>int lastIndex = Collections.lastIndexOfSubList(source, target);</code></pre>
+
+<h3 style="color: #117864;">22. singletonList(T o)</h3>
+<p>Returns an immutable list with one element.</p>
+<pre><code>List<String> single = Collections.singletonList("One");</code></pre>
+
+<h3 style="color: #117864;">23. singletonMap(K key, V value)</h3>
+<p>Returns immutable map with one key-value pair.</p>
+<pre><code>Map<String, Integer> singleMap = Collections.singletonMap("A", 1);</code></pre>
+
+<h3 style="color: #117864;">24. emptyMap(), emptySet()</h3>
+<p>Returns immutable empty map/set.</p>
+<pre><code>Map<String, String> emptyMap = Collections.emptyMap();
+Set<Integer> emptySet = Collections.emptySet();</code></pre>
 
 ---
 
