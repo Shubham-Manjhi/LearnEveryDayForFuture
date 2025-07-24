@@ -21,103 +21,56 @@
 <h2 style="color: #1F618D; text-align: center;">✅ 2. Syntax and Structure</h2>
 <p>The class is declared as:</p>
 <pre><code class="language-java">public class Collections extends Object</code></pre>
-<p>Common methods include:</p>
+<p>Methods include:</p>
 <ul>
-  <li><code>sort(List<T> list)</code></li>
-  <li><code>reverse(List<?> list)</code></li>
-  <li><code>shuffle(List<?> list)</code></li>
-  <li><code>min(Collection<? extends T> coll)</code></li>
-  <li><code>max(Collection<? extends T> coll)</code></li>
-  <li><code>frequency(Collection<?> c, Object o)</code></li>
-  <li><code>synchronizedList(List<T> list)</code></li>
+  <li><code>sort(List<T> list)</code> - Sorts list in natural order.</li>
+  <li><code>sort(List<T> list, Comparator<? super T> c)</code> - Sorts list using Comparator.</li>
+  <li><code>reverse(List<?> list)</code> - Reverses order of elements.</li>
+  <li><code>shuffle(List<?> list)</code> - Randomizes list order.</li>
+  <li><code>shuffle(List<?> list, Random rnd)</code> - Shuffles using Random generator.</li>
+  <li><code>swap(List<?> list, int i, int j)</code> - Swaps two elements.</li>
+  <li><code>fill(List<? super T> list, T obj)</code> - Replaces all elements with obj.</li>
+  <li><code>copy(List<? super T> dest, List<? extends T> src)</code> - Copies source to destination.</li>
+  <li><code>min(Collection<? extends T> coll)</code> - Returns minimum.</li>
+  <li><code>min(Collection<? extends T> coll, Comparator<? super T> comp)</code> - With comparator.</li>
+  <li><code>max(Collection<? extends T> coll)</code> - Returns maximum.</li>
+  <li><code>max(Collection<? extends T> coll, Comparator<? super T> comp)</code> - With comparator.</li>
+  <li><code>frequency(Collection<?> c, Object o)</code> - Count occurrences of object.</li>
+  <li><code>disjoint(Collection<?> c1, Collection<?> c2)</code> - Checks if no common elements.</li>
+  <li><code>binarySearch(List<? extends Comparable<? super T>> list, T key)</code> - Binary search.</li>
+  <li><code>binarySearch(List<? extends T> list, T key, Comparator<? super T> c)</code> - Binary search with comparator.</li>
+  <li><code>indexOfSubList(List<?> source, List<?> target)</code> - Finds first sublist index.</li>
+  <li><code>lastIndexOfSubList(List<?> source, List<?> target)</code> - Finds last sublist index.</li>
+  <li><code>replaceAll(List<T> list, T oldVal, T newVal)</code> - Replaces all occurrences.</li>
+  <li><code>rotate(List<?> list, int distance)</code> - Rotates elements.</li>
+  <li><code>synchronizedList(List<T> list)</code> - Thread-safe list.</li>
+  <li><code>synchronizedMap(Map<K,V> m)</code> - Thread-safe map.</li>
+  <li><code>synchronizedSet(Set<T> s)</code> - Thread-safe set.</li>
+  <li><code>unmodifiableList(List<? extends T> list)</code> - Read-only list.</li>
+  <li><code>unmodifiableMap(Map<? extends K,? extends V> m)</code> - Read-only map.</li>
+  <li><code>unmodifiableSet(Set<? extends T> s)</code> - Read-only set.</li>
+  <li><code>singleton(T o)</code> - Immutable singleton set.</li>
+  <li><code>singletonList(T o)</code> - Immutable singleton list.</li>
+  <li><code>singletonMap(K key, V value)</code> - Immutable singleton map.</li>
+  <li><code>nCopies(int n, T o)</code> - Immutable list with n copies of element.</li>
+  <li><code>emptyList()</code>, <code>emptySet()</code>, <code>emptyMap()</code> - Immutable empty collections.</li>
 </ul>
 
 ---
 
 <h2 style="color: #1F618D; text-align: center;">✅ 3. Practical Examples</h2>
 <pre><code class="language-java">List<Integer> list = Arrays.asList(5, 3, 9, 1);
-
-// Sorting
-Collections.sort(list); // [1, 3, 5, 9]
-
-// Reversing
-Collections.reverse(list); // [9, 5, 3, 1]
-
-// Finding Min/Max
-int min = Collections.min(list); // 1
-int max = Collections.max(list); // 9
-
-// Frequency
-int freq = Collections.frequency(list, 3); // 1
-
-// Thread-safe List
-List<Integer> syncList = Collections.synchronizedList(new ArrayList<>());
+Collections.sort(list);
+Collections.reverse(list);
+int min = Collections.min(list);
+int max = Collections.max(list);
+Collections.rotate(list, 2);
+Collections.fill(list, 7);
+Collections.replaceAll(list, 7, 1);
+List<String> sync = Collections.synchronizedList(new ArrayList<>());
+Map<String, String> singleton = Collections.singletonMap("key", "value");
+boolean disjoint = Collections.disjoint(list1, list2);
 </code></pre>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 4. Internal Working</h2>
-<ul>
-  <li>Uses efficient sorting algorithms like MergeSort (legacy) and TimSort.</li>
-  <li>Synchronized versions use decorators that wrap collections with thread-safe methods.</li>
-  <li>Utility methods often delegate to internal loops or other efficient collection implementations.</li>
-</ul>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 5. Best Practices</h2>
-<ul>
-  <li>✔ Prefer <code>Collections.unmodifiableList</code> for read-only collections.</li>
-  <li>✔ Always use <code>synchronized*</code> wrappers when accessing collections from multiple threads.</li>
-  <li>✔ Avoid using <code>null</code> values unless specifically allowed.</li>
-</ul>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 6. Related Concepts</h2>
-<ul>
-  <li>Java Generics</li>
-  <li>Comparator and Comparable</li>
-  <li>Stream API as an alternative in Java 8+</li>
-</ul>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 7. Interview & Real-world Use</h2>
-<p><strong>Interview Questions:</strong></p>
-<ul>
-  <li>Difference between Collection and Collections?</li>
-  <li>How to make a collection thread-safe?</li>
-  <li>How does Collections.sort() work internally?</li>
-</ul>
-<p><strong>Real-world Use:</strong> Often used in e-commerce carts, sorting leaderboards, filtering logs, etc.</p>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 8. Common Errors & Debugging</h2>
-<ul>
-  <li>❌ Using <code>Collections.sort()</code> on immutable collections</li>
-  <li>❌ Forgetting synchronization in multithreaded environments</li>
-  <li>❌ Modifying synchronized collections outside synchronized blocks</li>
-</ul>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 9. Java Version Updates</h2>
-<ul>
-  <li>Java 8+: Prefer Stream API for many operations previously done via Collections</li>
-  <li>Java 9+: New <code>List.of()</code> and <code>Map.of()</code> methods for immutable lists/maps</li>
-  <li>Java 21 SIP-80: Discusses utility enhancements including easier handling for immutable collections</li>
-</ul>
-
----
-
-<h2 style="color: #1F618D; text-align: center;">✅ 10. Practice and Application</h2>
-<ul>
-  <li>Sort student records using <code>Collections.sort()</code></li>
-  <li>Synchronize leaderboard scores using <code>synchronizedList()</code></li>
-  <li>Find most frequent purchase with <code>frequency()</code></li>
-</ul>
 
 ---
 
