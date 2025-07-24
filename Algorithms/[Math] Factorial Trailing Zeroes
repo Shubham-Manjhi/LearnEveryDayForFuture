@@ -1,0 +1,175 @@
+**Java Topic: LeetCode 172 – Factorial Trailing Zeroes**
+
+---
+
+✅ 1. Definition and Purpose
+
+• What is the concept?\
+Given an integer n, return the number of trailing zeroes in n! (n factorial).
+
+• Why does it exist in Java?\
+This problem teaches mathematical optimization and how to avoid direct computation of large numbers.
+
+• What problem does it solve?\
+Calculates how many times 10 divides n! by counting factors of 5 (since 2s are more frequent).
+
+🧠 Example: Input: 5 → Output: 1 (5! = 120)
+
+---
+
+✅ 2. Syntax and Structure
+
+• Define `int trailingZeroes(int n)`\
+• Count how many multiples of 5, 25, 125... divide n
+
+---
+
+✅ 3. Practical Examples
+
+🔹 Approach 1: Count Factors of 5 (Iterative)
+
+📌 Why this works:\
+Trailing zeroes in factorials are caused by 10s, and 10 = 2 × 5.\
+There are always more 2s than 5s in factorials, so the count of 5s determines the number of zeroes.
+
+To count 5s:
+
+- Each multiple of 5 adds one 5 (e.g., 5, 10, 15, ...)
+- Multiples of 25 add an extra 5 (e.g., 25 = 5×5, 50 = 5×10)
+- Multiples of 125 add two extra 5s (e.g., 125 = 5×25)
+
+We keep dividing n by 5, 25, 125... and accumulate the result.
+
+```java
+public class FactorialTrailingZeroes {
+    public int trailingZeroes(int n) {
+        int count = 0;
+        while (n >= 5) {
+            n /= 5;
+            count += n;
+        }
+        return count;
+    }
+}
+```
+
+📌 Example: n = 100
+
+```
+100 / 5 = 20  → 20 numbers give at least one 5
+20 / 5 = 4    → 4 numbers give one extra 5 (25, 50, 75, 100)
+Total trailing zeroes = 20 + 4 = 24
+```
+
+🔹 Approach 2: Recursive Factor Count
+
+📌 Why this works:\
+Same as approach 1, but uses recursion to simplify the breakdown.
+
+At each recursive level, we calculate `n / 5` and recurse into `n / 5`.
+
+```java
+public class FactorialTrailingZeroesRecursive {
+    public int trailingZeroes(int n) {
+        if (n < 5) return 0;
+        return n / 5 + trailingZeroes(n / 5);
+    }
+}
+```
+
+📌 Example: n = 100
+
+```
+100 / 5 = 20
+20 / 5 = 4
+4 / 5 = 0 (base case)
+Total = 20 + 4 + 0 = 24
+```
+
+---
+
+✅ 4. Internal Working
+
+• Each 10 = 2 \* 5, and 2s are always more abundant\
+• Count all 5, 25, 125... as they contribute extra 5s
+
+Time Complexity: O(log₅n)
+
+Space Complexity:
+
+- Iterative: O(1)
+- Recursive: O(log₅n) call stack
+
+---
+
+✅ 5. Best Practices
+
+✔ Don’t compute n! directly — use mathematical approach\
+✔ Use iterative method to avoid stack overflow in recursion
+
+---
+
+✅ 6. Related Concepts
+
+- Prime factorization\
+
+- Logarithmic math\
+
+- Count trailing digits in number series
+
+🧠 Example: Compression of large digit formats, scientific formatting
+
+---
+
+✅ 7. Interview & Real-world Use
+
+🧠 Interview Use:
+
+- Tests ability to reduce factorial problems mathematically
+
+🏢 Real-world:
+
+- Scientific computation\
+
+- Formatting outputs (e.g., scientific calculator formatting)
+
+---
+
+✅ 8. Common Errors & Debugging
+
+❌ Calculating factorial directly (overflow)\
+❌ Only counting n / 5 (missing higher powers)
+
+🧪 Debug Tip:
+
+- Log each division result (n /= 5) and current count
+
+---
+
+✅ 9. Java Version Updates
+
+• No significant changes across Java versions\
+• Java 8+: Streams possible but unnecessary for this simple logic
+
+---
+
+✅ 10. Practice and Application
+
+📝 Practice on:
+
+- LeetCode #172\
+
+- Prime count problems\
+
+- Math-based factorial challenges
+
+🏗 Apply in:
+
+- Scientific calculators\
+
+- Output padding\
+
+- Factor-based analytics
+
+---
+
