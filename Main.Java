@@ -1,19 +1,30 @@
-class Solution {
-    public boolean isPalindrome(String s) {
-        int left = 0;
-        int right = s.length()-1;
+import java.util.*;
 
-        while (left < right) {
-            while (s.charAt(left) != ' ') left++;
-            while (s.charAt(right) != ' ') right--;
-if (Character.isLetter(s.charAt(left))) {
-    // process letter
-}char1) == Character.toLowerCase(char2)
+public class Solution {
+    public int[] solution(int[] A, int Y) {
+        Set<Integer> seen = new HashSet<>();
 
-            if (s.charAt(left). != s.charAt(right).lower()) return false;
-            left++;
-            right--;
+        for (Integer num : A) {
+            seen.add(num);  // Step 1: Add current number to set}
         }
-        return true;
+
+        Arrays.sort(A);  // Step 2: Sort the array
+        for (int num : A) {
+            int complement = Y - num;
+            seen.remove(num);  // Step 3: Remove current number from set
+            if (seen.contains(complement)) {
+                return new int[]{num, complement};
+            }
+            seen.add(num);  // Step 4: Add it back to the set
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] A = {1, 2, 3, 4, 5};
+        int Y = 6;
+        int[] result = solution.solution(A, Y);
+        System.out.println(Arrays.toString(result)); // Output: [1, 5] or [2, 4]
     }
 }
