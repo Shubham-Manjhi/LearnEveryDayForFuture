@@ -44,23 +44,25 @@ Explanation: 2 + 3 + 5 + 1 = 11</code></pre>
 
 
 <h3 style="color: #5D6D7E;">🔹 Approach 1: Bottom-Up Dynamic Programming (Optimized)</h3>
-<pre><code class="language-java">public int minimumTotal(List_List triangle) {
-    int n = triangle.size();
-    int[] dp = new int[n + 1];
-
-
-// Start from bottom row and move upwards
-for (int i = n - 1; i >= 0; i--) {
-    for (int j = 0; j < triangle.get(i).size(); j++) {
-        dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j); // Choose min adjacent and add current
+<pre><code class="language-java">
+import java.util.Collections;
+class Solution {
+    public int minimumTotal(List_List triangle) {
+        int n = triangle.size();
+        int[] dp = new int[n + 1];
+        
+        // Start from bottom row and move upwards
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j); 
+            }
+        }
+        return dp[0]; // Top element holds the final result
     }
-}
-return dp[0]; // Top element holds the final result
-
 }
 
 <p><b>⏱ Time:</b> O(n²), <b>💾 Space:</b> O(n)</p>
-
+</pre>
 
 <h3 style="color: #5D6D7E;">🔹 Approach 2: Top-Down Recursion with Memoization</h3>
 <pre><code class="language-java">public int minimumTotal(List_List triangle) {
@@ -68,7 +70,6 @@ return dp[0]; // Top element holds the final result
     for (int[] row : memo) Arrays.fill(row, Integer.MAX_VALUE);
     return helper(triangle, 0, 0, memo);
 }
-
 
 private int helper(List<List> t, int i, int j, int[][] memo) {
 if (i == t.size()) return 0;
@@ -80,8 +81,8 @@ memo[i][j] = t.get(i).get(j) + Math.min(left, right); // Store result
 return memo[i][j];
 
 }
-
 <p><b>⏱ Time:</b> O(n²), <b>💾 Space:</b> O(n²)</p>
+</pre>
 
 
 
