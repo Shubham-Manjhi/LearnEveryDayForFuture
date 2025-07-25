@@ -1,30 +1,26 @@
 import java.util.*;
 
-public class Solution {
-    public int[] solution(int[] A, int Y) {
-        Set<Integer> seen = new HashSet<>();
+class Solution {
+    public boolean isInterleave(String s1, String s2, String s3) {
+        HashMap<Character, Integer> freqCounter = new HashMap<>();
 
-        for (Integer num : A) {
-            seen.add(num);  // Step 1: Add current number to set}
+        for (Character cha : s1.toCharArray()) {
+            freqCounter.put(cha, freqCounter.getOrDefault(cha, 0) + 1);
+        }
+        for (Character cha : s2.toCharArray()) {
+            freqCounter.put(cha, freqCounter.getOrDefault(cha, 0) + 1);
         }
 
-        Arrays.sort(A);  // Step 2: Sort the array
-        for (int num : A) {
-            int complement = Y - num;
-            seen.remove(num);  // Step 3: Remove current number from set
-            if (seen.contains(complement)) {
-                return new int[]{num, complement};
+        for (Character cha : s3.toCharArray()) {
+            if (freqCounter.getOrDefault(cha, 0) == 0) {
+                return false;
             }
-            seen.add(num);  // Step 4: Add it back to the set
+            freqCounter.put(cha, freqCounter.get(cha) - 1);
         }
-        return result;
-    }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[] A = {1, 2, 3, 4, 5};
-        int Y = 6;
-        int[] result = solution.solution(A, Y);
-        System.out.println(Arrays.toString(result)); // Output: [1, 5] or [2, 4]
+        for (Map.Entry<Character, Integer> keyValue : freqCounter.entrySet()) {
+            if (keyValue.getValue() > 0) return false;
+        }
+        return true;
     }
 }
