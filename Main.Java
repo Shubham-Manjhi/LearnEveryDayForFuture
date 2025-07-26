@@ -1,26 +1,24 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
-class Solution {
-    public boolean isInterleave(String s1, String s2, String s3) {
-        HashMap<Character, Integer> freqCounter = new HashMap<>();
+public class ListComparison {
+    public static void main(String[] args) {
+        List<String> list1 = new ArrayList<>();
+        list1.add("Apple");
+        list1.add("Banana");
+        list1.add("Cherry");
 
-        for (Character cha : s1.toCharArray()) {
-            freqCounter.put(cha, freqCounter.getOrDefault(cha, 0) + 1);
-        }
-        for (Character cha : s2.toCharArray()) {
-            freqCounter.put(cha, freqCounter.getOrDefault(cha, 0) + 1);
-        }
+        List<String> list2 = new ArrayList<>();
+        list2.add("Apple");
+        list2.add("Banana");
+        list2.add("Cherry");
 
-        for (Character cha : s3.toCharArray()) {
-            if (freqCounter.getOrDefault(cha, 0) == 0) {
-                return false;
-            }
-            freqCounter.put(cha, freqCounter.get(cha) - 1);
-        }
+        List<String> list3 = new ArrayList<>();
+        list3.add("Banana");
+        list3.add("Apple");
+        list3.add("Cherry");
 
-        for (Map.Entry<Character, Integer> keyValue : freqCounter.entrySet()) {
-            if (keyValue.getValue() > 0) return false;
-        }
-        return true;
+        System.out.println("list1.equals(list2): " + list1.equals(list2)); // true (same elements, same order)
+        System.out.println("list1.equals(list3): " + list1.equals(list3)); // false (same elements, different order)
     }
 }
